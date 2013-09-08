@@ -57,7 +57,7 @@ int main()
 	p1=p-1;
 	q1=q-1;
 	m=p1*q1;
-	while(q1!=0)				//gcd of p & q using Euclid's algorithm
+	while(q1!=0)				//gcd of (p-1) & (q-1) using Euclid's algorithm
 	{
 		g=q1;
 		x=p1;

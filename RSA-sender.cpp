@@ -10,7 +10,7 @@ int main ()
 {
 	int x,n,r,z,l, i, j;
 	string a1;
-	cout<<"enter the string"<<'\n';				//accept message to be coded
+	cout<<"enter the string"<<'\n';	//accept message to be coded
 	getline (cin, a1, '\n');
 	l=a1.size();
 	cout<<"enter value of n: ";
