@@ -7,9 +7,11 @@
 #include<cstdlib>
 #include<ctime>
 #include<string>
+#include<fstream>
 using namespace std;
 int main()
 {
+	ifstream text("message.txt");
 	int i, j, n, a[100], b[25], p, q, p1, q1, g, l, n1, m, x, y;
 	float lim;
 	string s1;
@@ -37,8 +39,7 @@ int main()
 			b[j]=i;			//storing primes in b[i]
 			j++;
 		}
-	//for(i=0;i<25;i++)
-	//cout<<b[i]<<" ";
+	
 	srand((unsigned int) time(0));
 	x=(rand()%10);				//randomly pick one of the last 10 primes
 	i=24-x;
@@ -51,7 +52,6 @@ int main()
 	i=24-y;
 	q=b[i];
 	int r=b[i+1];			//pick prime r co-prime to m
-	//cout<<"p="<<p<<" "<<"q="<<q<<"\n";
 	n1=p*q;					//product of 2 primes
 	cout<<"n = "<<n1<<"\n";
 	p1=p-1;
@@ -65,34 +65,29 @@ int main()
 		q1=x%q1;
 	}
 	m=m/g;					//lcm(p,q)=(p*q)/gcd(p,q)
-	//cout<<"m="<<m<<"\n";		
 	int s=1;
-	while((r*s)%m!=1)			//computing multiplicative inverse of r in U(m)
+	while((r*s)%m!=1)		//computing multiplicative inverse of r in U(m)
 	{
-		//cout << s << " "<<"\n";
 		s++;
 	}
 	cout<<"r = "<<r<<"\n";
-	//cout<<"s="<<s<<"\n";
-	
-	cout<<"Enter message length\n";		//accept message length
-	cin>>l;
-	cout<<"Enter coded message\n";		//accept coded message
+	cout<<"Press Enter when message is ready\n";
+	cin.ignore();
+	text>>l; 				//accept message length
 	for(int i=0;i<l;i++)
 	{
-		cin>>y;
+		text>>y;
 		x=1;
-		for(int j=0;j<s;j++)		//compute (((Ri)^s)mod(n))
+		for(int j=0;j<s;j++)	//compute (((Ri)^s)mod(n))
 		{
 			x=x*y;
 			x=x%n1;
 		}
 		s1[i]=x;			//convert and store int ASCII values to string characters
-		//cout<<x<<" ";
 	}
 	cout<<"Decoded message is:\n";
 	for(i=0;i<l;i++)
 		cout<<s1[i];			//display decoded message
-	cout<<"\n";
+	cout<<"\n\n";
 	return 0;
 }
